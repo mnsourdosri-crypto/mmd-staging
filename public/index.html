@@ -5,34 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MMD</title>
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: Arial, sans-serif;
-      background: #111;
-      color: white;
+      background: #0b0b0d;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
       text-align: center;
     }
-    .box {
-      padding: 30px;
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      padding: 40px 20px;
     }
+
     h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+      font-size: 64px;
+      margin: 0 0 15px;
+      letter-spacing: 4px;
     }
+
     p {
-      font-size: 18px;
-      opacity: 0.8;
+      font-size: 20px;
+      color: #bdbdbd;
+      margin-bottom: 30px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 12px 22px;
+      border: 1px solid #444;
+      border-radius: 30px;
+      font-size: 16px;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: #35d07f;
+      border-radius: 50%;
+      margin-left: 8px;
     }
   </style>
 </head>
+
 <body>
-  <div class="box">
+  <main class="container">
     <h1>MMD</h1>
-    <p>الموقع يعمل بنجاح</p>
-  </div>
+    <p>مرحباً بك في MMD</p>
+
+    <div class="status">
+      <span class="dot"></span>
+      النظام يعمل بنجاح
+    </div>
+  </main>
 </body>
 </html>
