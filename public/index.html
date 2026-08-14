@@ -67,6 +67,34 @@
       <span class="dot"></span>
       النظام يعمل بنجاح
     </div>
-  </main>
+<button id="checkBtn" style="margin-top:25px;padding:12px 22px;border-radius:25px;border:1px solid #444;background:#16161a;color:white;font-size:16px;">
+  فحص الاتصال بالسيرفر
+</button>
+
+<p id="apiStatus" style="margin-top:15px;font-size:16px;"></p>
+
+<script>
+  const checkBtn = document.getElementById("checkBtn");
+  const apiStatus = document.getElementById("apiStatus");
+
+  async function checkServer() {
+    apiStatus.textContent = "جاري الفحص...";
+
+    try {
+      const response = await fetch("/health");
+      const data = await response.json();
+
+      if (data.ok) {
+        apiStatus.textContent = "✅ الاتصال بالسيرفر ناجح";
+      } else {
+        apiStatus.textContent = "⚠️ السيرفر لا يستجيب بشكل صحيح";
+      }
+    } catch (error) {
+      apiStatus.textContent = "❌ تعذر الاتصال بالسيرفر";
+    }
+  }
+
+  checkBtn.addEventListener("click", checkServer);
+</script>  </main>
 </body>
 </html>
