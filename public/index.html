@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MMD</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -11,90 +12,242 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
-      font-family: Arial, sans-serif;
       background: #0b0b0d;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      color: white;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
     }
 
     .container {
-      width: 90%;
-      max-width: 500px;
-      padding: 40px 20px;
+      width: 92%;
+      max-width: 520px;
+      margin: auto;
+      padding: 35px 0 60px;
     }
 
-    h1 {
-      font-size: 64px;
-      margin: 0 0 15px;
-      letter-spacing: 4px;
+    .logo {
+      text-align: center;
+      font-size: 48px;
+      font-weight: bold;
+      letter-spacing: 5px;
+      margin-bottom: 8px;
     }
 
-    p {
-      font-size: 20px;
-      color: #bdbdbd;
-      margin-bottom: 30px;
+    .subtitle {
+      text-align: center;
+      color: #aaa;
+      margin-bottom: 35px;
     }
 
-    .status {
-      display: inline-block;
-      padding: 12px 22px;
-      border: 1px solid #444;
-      border-radius: 30px;
+    .card {
+      background: #151518;
+      border: 1px solid #29292e;
+      border-radius: 20px;
+      padding: 22px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 23px;
+    }
+
+    label {
+      display: block;
+      margin: 16px 0 7px;
+      color: #ddd;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #38383e;
+      background: #0e0e11;
+      color: white;
       font-size: 16px;
     }
 
-    .dot {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      background: #35d07f;
-      border-radius: 50%;
-      margin-left: 8px;
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: 0;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .calculate {
+      background: white;
+      color: #111;
+    }
+
+    .subscribe {
+      background: #222228;
+      color: white;
+      border: 1px solid #444;
+    }
+
+    .result {
+      display: none;
+      text-align: center;
+    }
+
+    .calories {
+      font-size: 42px;
+      font-weight: bold;
+      margin: 12px 0;
+    }
+
+    .small {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .offer {
+      display: none;
     }
   </style>
 </head>
 
 <body>
+
   <main class="container">
-    <h1>MMD</h1>
-    <p>مرحباً بك في MMD</p>
 
-    <div class="status">
-      <span class="dot"></span>
-      النظام يعمل بنجاح
-    </div>
-<button id="checkBtn" style="margin-top:25px;padding:12px 22px;border-radius:25px;border:1px solid #444;background:#16161a;color:white;font-size:16px;">
-  فحص الاتصال بالسيرفر
-</button>
+    <div class="logo">MMD</div>
+    <div class="subtitle">ابدأ مجانًا واعرف احتياجك اليومي</div>
 
-<p id="apiStatus" style="margin-top:15px;font-size:16px;"></p>
+    <section class="card">
+      <h2>بياناتك الأساسية</h2>
 
-<script>
-  const checkBtn = document.getElementById("checkBtn");
-  const apiStatus = document.getElementById("apiStatus");
+      <label for="name">الاسم</label>
+      <input id="name" type="text" placeholder="اكتب اسمك">
 
-  async function checkServer() {
-    apiStatus.textContent = "جاري الفحص...";
+      <label for="age">العمر</label>
+      <input id="age" type="number" placeholder="مثال: 25">
 
-    try {
-      const response = await fetch("/health");
-      const data = await response.json();
+      <label for="gender">الجنس</label>
+      <select id="gender">
+        <option value="">اختر</option>
+        <option value="male">ذكر</option>
+        <option value="female">أنثى</option>
+      </select>
 
-      if (data.ok) {
-        apiStatus.textContent = "✅ الاتصال بالسيرفر ناجح";
-      } else {
-        apiStatus.textContent = "⚠️ السيرفر لا يستجيب بشكل صحيح";
+      <label for="height">الطول بالسنتيمتر</label>
+      <input id="height" type="number" placeholder="مثال: 175">
+
+      <label for="weight">الوزن بالكيلو</label>
+      <input id="weight" type="number" step="0.1" placeholder="مثال: 80">
+
+      <label for="activity">مستوى النشاط</label>
+      <select id="activity">
+        <option value="">اختر نشاطك</option>
+        <option value="1.2">قليل الحركة</option>
+        <option value="1.375">نشاط خفيف</option>
+        <option value="1.55">نشاط متوسط</option>
+        <option value="1.725">نشاط مرتفع</option>
+        <option value="1.9">نشاط مرتفع جدًا</option>
+      </select>
+
+      <label for="goal">هدفك</label>
+      <select id="goal">
+        <option value="">اختر هدفك</option>
+        <option value="lose">خسارة الدهون</option>
+        <option value="maintain">المحافظة على الوزن</option>
+        <option value="gain">زيادة الوزن والعضلات</option>
+      </select>
+
+      <button class="calculate" onclick="calculateCalories()">
+        احسب سعراتي مجانًا
+      </button>
+
+      <p id="error" class="small" style="text-align:center;"></p>
+    </section>
+
+    <section id="result" class="card result">
+      <div class="small">احتياجك اليومي التقريبي</div>
+      <div id="calories" class="calories">0</div>
+      <div>سعرة حرارية يوميًا</div>
+
+      <p id="goalText" class="small"></p>
+    </section>
+
+    <section id="offer" class="card offer">
+      <h2>جاهز تبدأ مع MMD؟</h2>
+
+      <p class="small">
+        عرفت الآن احتياجك اليومي مجانًا. اشترك للحصول على تجربة MMD الكاملة والمتابعة والخدمات المخصصة لك.
+      </p>
+
+      <button class="subscribe" onclick="startSubscription()">
+        جرّب MMD لمدة شهر
+      </button>
+    </section>
+
+  </main>
+
+  <script>
+    function calculateCalories() {
+      const name = document.getElementById("name").value.trim();
+      const age = Number(document.getElementById("age").value);
+      const gender = document.getElementById("gender").value;
+      const height = Number(document.getElementById("height").value);
+      const weight = Number(document.getElementById("weight").value);
+      const activity = Number(document.getElementById("activity").value);
+      const goal = document.getElementById("goal").value;
+      const error = document.getElementById("error");
+
+      if (!name || !age || !gender || !height || !weight || !activity || !goal) {
+        error.textContent = "فضلاً أكمل جميع البيانات أولاً.";
+        return;
       }
-    } catch (error) {
-      apiStatus.textContent = "❌ تعذر الاتصال بالسيرفر";
-    }
-  }
 
-  checkBtn.addEventListener("click", checkServer);
-</script>  </main>
+      error.textContent = "";
+
+      let bmr;
+
+      if (gender === "male") {
+        bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
+      } else {
+        bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
+      }
+
+      let calories = bmr * activity;
+      let goalMessage = "";
+
+      if (goal === "lose") {
+        calories -= 400;
+        goalMessage = "تم تقدير السعرات بما يتناسب مع هدف خسارة الدهون.";
+      }
+
+      if (goal === "maintain") {
+        goalMessage = "تم تقدير السعرات للمحافظة على وزنك الحالي.";
+      }
+
+      if (goal === "gain") {
+        calories += 300;
+        goalMessage = "تم تقدير السعرات بما يتناسب مع هدف زيادة الوزن والعضلات.";
+      }
+
+      calories = Math.round(calories);
+
+      document.getElementById("calories").textContent = calories;
+      document.getElementById("goalText").textContent = goalMessage;
+      document.getElementById("result").style.display = "block";
+      document.getElementById("offer").style.display = "block";
+
+      document.getElementById("result").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function startSubscription() {
+      alert("الخطوة التالية: اختيار الباقة والدفع. سنربطها بنظام الاشتراك لاحقًا.");
+    }
+  </script>
+
 </body>
 </html>
