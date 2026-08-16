@@ -182,7 +182,36 @@
     </div>
 
   </div>
+<div class="card">
+  <h2>اختر اشتراكك</h2>
 
+  <label for="serviceType">نوع الخدمة</label>
+  <select id="serviceType" onchange="updateSubscriptionPrice()">
+    <option value="training">تمارين فقط - 350 ريال / شهر</option>
+    <option value="nutrition">تغذية فقط - 450 ريال / شهر</option>
+    <option value="full">شامل تمارين + تغذية - 600 ريال / شهر</option>
+    <option value="inPerson">تدريب حضوري - 1800 ريال / شهر</option>
+  </select>
+
+  <label for="months">مدة الاشتراك</label>
+  <select id="months" onchange="updateSubscriptionPrice()">
+    <option value="1">شهر واحد</option>
+    <option value="2">شهرين</option>
+    <option value="3">3 شهور</option>
+    <option value="4">4 شهور</option>
+    <option value="5">5 شهور</option>
+    <option value="6">6 شهور</option>
+  </select>
+
+  <div class="result">
+    <h2>السعر الإجمالي</h2>
+    <div class="calories" id="subscriptionTotal">350 ريال</div>
+  </div>
+
+  <button type="button" onclick="startSubscription()">
+    اشترك وادفع
+  </button>
+</div>
   <script>
     function calculateCalories() {
       const age = Number(document.getElementById("age").value);
@@ -228,7 +257,26 @@
     function startSubscription() {
       alert("قريبًا سيتم ربط الاشتراك والدفع هنا");
     }
-  </script>
+  const subscriptionPrices = {
+  training: 350,
+  nutrition: 450,
+  full: 600,
+  inPerson: 1800
+};
+
+function calculateSubscription(type, months) {
+  const price = subscriptionPrices[type];
+  return price * months;
+}function updateSubscriptionPrice() {
+  const type = document.getElementById("subscriptionType").value;
+  const months = Number(document.getElementById("months").value);
+
+  const price = calculateSubscription(type, months);
+
+  const result = document.getElementById("subscriptionResult");
+  result.textContent = `السعر الإجمالي: ${price} ريال`;
+}
+</script>
 
 </body>
 </html>
