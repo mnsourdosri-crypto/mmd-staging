@@ -222,7 +222,7 @@ button {
 
   <div class="result">
     <h2>السعر الإجمالي</h2>
-    <div class="calories" id="subscriptionTotal">350 ريال</div>
+    <div class="calories" id="subscriptionTotal"> </div>
   </div>
 
   <button type="button" onclick="startSubscription()">
@@ -290,8 +290,9 @@ function calculateSubscription(type, months) {
 
   const price = calculateSubscription(type, months);
 
-  const result = document.getElementById("subscriptionResult");
-  result.textContent = `السعر الإجمالي: ${price} ريال`;
+  const result = document.getElementById("subscriptionTotal");
+result.textContent = `السعر الإجمالي: ${price} ريال`;
+  
 }
 </script>
 
