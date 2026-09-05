@@ -3,10 +3,15 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("MMD staging is running");
+app.use(express.static("public"));
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    ok: true,
+    message: "MMD staging is running"
+  });
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(PORT, () => {
+  console.log(`MMD running on port ${PORT}`);
 });
