@@ -97,7 +97,19 @@
       اختبار API الدفع
     </button>
 
-    <div id="result"></div>
+ <div style="margin-top:18px;">
+  <button class="primary" onclick="startPayment('Apple Pay')">
+     Apple Pay
+  </button>
+
+  <button class="secondary" onclick="startPayment('Tabby')">
+    تابي
+  </button>
+
+  <button class="secondary" onclick="startPayment('Tamara')">
+    تمارا
+  </button>
+</div>   <div id="result"></div>
   </div>
 
   <script>
@@ -150,7 +162,9 @@
       }
     }
 
-    checkServer();
+    checkServer(); function startPayment(method) {
+  alert("طريقة الدفع المختارة: " + method);
+}
   </script>
 
 </body>
